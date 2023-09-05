@@ -1,0 +1,68 @@
+﻿@model IEnumerable<Category>
+@{
+    ViewData["Title"] = "Categories";
+}
+
+<partial name="_Notification" />
+
+<div class="card shadow boarder-0 mt-4 rounded">
+    <div class="card-header bg-primary bd-gradient ml-0 pl-3 rounded">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h2 class="text-white py-2">Category List</h2>
+            </div>
+        </div>
+    </div>
+    <div class="card-body p-4">
+        <div class="container pt-3">
+            <div class="row pt-4">
+                <div class="col-12 text-end">
+                    <a asp-controller="Category" asp-action="Create" class="btn btn-primary">Create new category</a>
+                </div>
+            </div>
+
+            <br />
+
+            <table class="table table-bordered table-striped" style="width:100%">
+                <thead>
+                    <tr>
+                        <th>
+                            Category name
+                        </th>
+                        <th>
+                            Display order
+                        </th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var obj in Model)
+                    {
+                        <tr>
+                            <td width="50%">
+                                @obj.Name
+                            </td>
+                            <td width="30%">
+                                @obj.DisplayOrder
+                            </td>
+                            <td>
+                                <div class="w-45 btn-group text-center" role="group">
+                                    <a asp-controller="Category" asp-action="Edit" asp-route-id="@obj.Id" class="btn btn-primary">Edit</a>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="w-45 btn-group text-center" role="group">
+                                    <a asp-controller="Category" asp-action="Delete" asp-route-id="@obj.Id" class="btn btn-primary">Delete</a>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+        </div>
+
+    </div>
+</div>
+
