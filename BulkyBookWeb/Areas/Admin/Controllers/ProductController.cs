@@ -31,7 +31,6 @@ namespace ChapterChonkWeb.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Create(Product obj)
         {
-
             if (ModelState.IsValid)
             {
                 _unitOfWork.Product.Add(obj);
