@@ -37,7 +37,7 @@ namespace ChapterChonk.DataAccess.Repository
             {
                 foreach (var includeProp in includeProperties.Split(',', StringSplitOptions.RemoveEmptyEntries))
                 {
-                    query.Include(includeProp);
+                    query = query.Include(includeProp);
                 }
             }
             return query.FirstOrDefault();
