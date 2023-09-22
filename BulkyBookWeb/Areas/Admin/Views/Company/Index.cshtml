@@ -1,0 +1,54 @@
+﻿@model IEnumerable<Product>
+@{
+    ViewData["Title"] = "Companies";
+}
+
+<partial name="_Notification" />
+
+<div class="card shadow boarder-0 mt-4 rounded">
+    <div class="card-header bg-primary bd-gradient ml-0 pl-3 rounded">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h2 class="text-white py-2">Company List</h2>
+            </div>
+        </div>
+    </div>
+    <div class="card-body p-4">
+        <div class="container pt-3">
+            <div class="row pt-4">
+                <div class="col-12 text-end">
+                    <a asp-controller="Company" asp-action="Upsert" class="btn btn-primary">Add new company</a>
+                </div>
+            </div>
+
+            <br />
+
+            <table id="tblData" class="table table-bordered table-striped" style="width:100%">
+                <thead>
+                    <tr>
+                        <th>
+                            Name
+                        </th>
+                        <th>
+                            Region
+                        </th>
+                        <th>
+                            Postal code
+                        </th>
+                        <th>
+                            Phone number
+                        </th>
+                        <th>
+
+                        </th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script src="~/js/company.js"></script>
+}
+

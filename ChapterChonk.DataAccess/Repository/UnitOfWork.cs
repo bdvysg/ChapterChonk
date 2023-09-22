@@ -13,6 +13,7 @@ namespace ChapterChonk.DataAccess.Repository
     {
         public ICategoryRepository Category { get; private set; }
         public IProductRepository Product { get; private set; }
+        public ICompanyRepository Company { get; private set; }
 
         ApplicationDBContext _dbContext;
 
@@ -22,6 +23,7 @@ namespace ChapterChonk.DataAccess.Repository
 
             Category = new CategoryRepository(dbContext);
             Product = new ProductRepository(dbContext);
+            Company = new CompanyRepository(dbContext);
         }
 
         public void Save()
