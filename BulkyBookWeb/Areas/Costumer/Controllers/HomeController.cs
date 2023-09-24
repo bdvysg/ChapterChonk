@@ -1,7 +1,9 @@
 ﻿using ChapterChonk.DataAccess.Repository.IRepository;
 using ChapterChonk.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using System.Security.Claims;
 
 namespace ChapterChonkWeb.Areas.Costumer.Controllers
 {
@@ -25,8 +27,40 @@ namespace ChapterChonkWeb.Areas.Costumer.Controllers
 
         public IActionResult Details(int id)
         {
-            Product product = _unitOfWork.Product.Get(e=> e.Id == id,includeProperties: "Category");
-            return View(product);
+            ShopingCart cart = new ShopingCart
+            {
+                Product = _unitOfWork.Product.Get(e => e.Id == id, includeProperties: "Category"),
+                Count = 1,
+                ProductId = id
+            };
+            return View(cart);
+        }
+
+        [HttpPost]
+        [Authorize]
+        public IActionResult Details(ShopingCart cart)
+        {
+            var claimsIdentity = (ClaimsIdentity)User.Identity;
+            var userId = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier).Value;
+
+            cart.UserId = userId;
+            cart.Id = 0;
+
+            ShopingCart cartFromDb = _unitOfWork.ShoppingCart.Get(u=> u.ProductId == cart.ProductId && u.UserId == cart.UserId);
+
+            if(cartFromDb != null)
+            {
+                cartFromDb.Count += cart.Count;
+                _unitOfWork.ShoppingCart.Update(cartFromDb);
+            }
+            else
+            {
+                _unitOfWork.ShoppingCart.Add(cart);
+            }
+            _unitOfWork.Save();
+            TempData["message"] = "Book added to cart";
+
+            return RedirectToAction("Index");
         }
 
         public IActionResult Privacy()
