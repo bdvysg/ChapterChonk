@@ -18,6 +18,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ChapterChonk.Models\ChapterChonk.Models.csproj" />
+    <ProjectReference Include="..\ChapterChonk.Utility\ChapterChonk.Utility.csproj" />
   </ItemGroup>
 
 </Project>
