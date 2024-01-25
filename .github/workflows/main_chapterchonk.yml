@@ -53,5 +53,5 @@ jobs:
         with:
           app-name: 'ChapterChonk'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_F2B8D77539314F21A0000DE63786D075 }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_4A67EB2543904B51854CF9E190282226 }}
           package: .
