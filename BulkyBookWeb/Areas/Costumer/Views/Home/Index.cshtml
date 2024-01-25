@@ -7,11 +7,11 @@
             <div class="row p-2">
                 <div class="col-12 p-1">
                     <div class="card border-0 p-3 border-top border-5 rounded">
-                        <img src="@product.imageURL" class="card-img-top rounded shadow" />
+                        <img src="@product.imageURL" class="card-img-top rounded shadow" style="height: 400px; object-fit: cover;" />
                     </div>
-                    <div class="card-body pb-0">
+                    <div class="card-body pb-0 style="min-height: 120px;">
                         <div class="pl-1 mt-1">
-                            <p class="card-title h5 text-dark opacity-75 text-uppercase text-center">@product.Title</p>
+                            <p class="card-title h5 text-dark opacity-75 text-uppercase text-center text-truncate">@product.Title</p>
                             <p class="card-title text-warning text-center">by <b>@product.Author</b></p>
                         </div>
                         <div class="pl-1">
@@ -32,5 +32,6 @@
         </div>
     }
 </div>
+
 
 <partial name="_Notification" />
